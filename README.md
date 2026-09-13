@@ -55,10 +55,24 @@ an unrelated LLM-gateway plugin).
   reads your credential file — and the client bootstrap is injected with
   `ctx.webServer.tapIndex()`, i.e. before compression, so no HTML rewriting.
 
+> ⚠️ **Until you set a password, anyone who can reach port 3301 gets into DSH.** Set one *before*
+> exposing the machine: **Settings → Plugins → Plugin configuration → dsh-3301**, or
+> `http://127.0.0.1:3301/__gate/setup` from the host itself.
+
 ```sh
-dsh plugin --profile web add dsh-3301     # once published to npm
-node tools/deploy.mjs dsh-3301            # or deploy this checkout into a profile
+# Today: clone and deploy (there is deliberately no npm package yet — see the note below)
+git clone https://github.com/Aztech-Lab/dsh-3301
+cd dsh-3301
+node tools/deploy.mjs dsh-3301
 ```
+
+> The first line people reach for — `dsh plugin --profile web add dsh-3301` — needs an npm package,
+> and none is published (by choice: the repository is the install source, and it has no build step).
+> Use the clone-and-deploy path above until that changes.
+
+> The deploy target is your DSH profile (`$DSH_HOME/profiles/<profile>`), which normally lives
+> **outside this repository**. If the write is refused (`EACCES: permission denied`), grant that
+> directory write access, or run the command as the user that owns `$DSH_HOME`.
 
 Restart DSH afterwards, then open **Settings → Plugins → Plugin configuration → dsh-3301**:
 

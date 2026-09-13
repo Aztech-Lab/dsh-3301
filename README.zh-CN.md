@@ -38,10 +38,21 @@ DSH 前面的带密码反向代理。DSH 保持回环；本代理绑定 `0.0.0.0
 - 会话来自官方 `ctx.connection.authenticatedUrl()`（不再读取你的凭据文件）；客户端兜底用
   `ctx.webServer.tapIndex()` 在压缩前注入，不需要改写 HTML。
 
+> ⚠️ **在设置口令之前，能连到 3301 端口的人都能直接进入 DSH。** 请在把机器暴露出去*之前*先设口令：
+> **设置 → 插件 → 插件配置 → dsh-3301**，或在本机打开 `http://127.0.0.1:3301/__gate/setup`。
+
 ```sh
-dsh plugin --profile web add dsh-3301     # npm 上架后
-node tools/deploy.mjs dsh-3301            # 或把本仓库部署进 profile
+# 当前请用：clone 后部署（我们暂不发布 npm 包，原因见下）
+git clone https://github.com/Aztech-Lab/dsh-3301
+cd dsh-3301
+node tools/deploy.mjs dsh-3301
 ```
+
+> 大家第一反应会敲的 `dsh plugin --profile web add dsh-3301` 需要 npm 上的包，而**我们刻意没有发布**
+>（仓库本身就是安装源，且没有构建步骤）。在上架之前请用上面的 clone + deploy 路径。
+
+> 部署目标是你的 DSH profile（`$DSH_HOME/profiles/<profile>`），通常**在本仓库之外**。
+> 如果写入被拒（`EACCES: permission denied`），请给该目录写权限，或用拥有 `$DSH_HOME` 的那个用户执行。
 
 装完重启 DSH，打开 **设置 → 插件 → 插件配置 → dsh-3301**：
 
