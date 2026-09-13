@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.dsh.lan-proxy</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/maxgray/.local/bin/node</string>
+		<string>/Users/maxgray/Documents/Agent/dsh_proxy/lib/cli.js</string>
+	</array>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>DSH_PROXY_PORT</key>
+		<string>3301</string>
+		<key>DSH_PROXY_USER</key>
+		<string>dsh</string>
+		<key>DSH_PROXY_PASS</key>
+		<string>205698</string>
+		<key>DSH_UPSTREAM</key>
+		<string>127.0.0.1:3080</string>
+	</dict>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>StandardOutPath</key>
+	<string>/tmp/dsh-lan-proxy.log</string>
+	<key>StandardErrorPath</key>
+	<string>/tmp/dsh-lan-proxy.log</string>
+</dict>
+</plist>

@@ -1,0 +1,23 @@
+# dsh-3301 bundle patch — installs the LAN gate plugin into a profile's stack.
+#
+# One row is enough: the package is dual-face. Its main entry (lib/plugin.js) is
+# the Host half — the 3301 listener, gate auth, DSH session, and the settings
+# namespace — while `dsh.client` points the browser at lib/client.js, the card
+# rendered in Settings → Plugins.
+#
+# Settings namespace: dsh-3301
+#   enabled / host / port / sessionDays / maxFailures / lockoutMinutes /
+#   injectClientBootstrap
+# Values below are the composition `base` layer: the user layer edited through
+# the settings card resolves above them.
+- insert:
+    - id: dsh-3301
+      name: 'dsh-3301'
+      config:
+        enabled: true
+        host: '0.0.0.0'
+        port: 3301
+        sessionDays: 30
+        maxFailures: 5
+        lockoutMinutes: 5
+        injectClientBootstrap: true

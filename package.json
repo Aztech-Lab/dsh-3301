@@ -1,0 +1,65 @@
+{
+  "name": "dsh-3301",
+  "version": "0.2.0",
+  "description": "dsh-3301 — LAN gate for a DeepSeek Harness (DSH) Web GUI: keeps DSH loopback-only, exposes a password-protected entry (HTTP + WebSocket) with a settings card, and stores the password only as a scrypt verifier. Ships as a DSH plugin and as a standalone CLI.",
+  "type": "module",
+  "main": "lib/plugin.js",
+  "exports": {
+    ".": {
+      "default": "./lib/plugin.js"
+    },
+    "./plugin": {
+      "default": "./lib/plugin.js"
+    },
+    "./client": "./lib/client.js",
+    "./standalone": {
+      "default": "./lib/index.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "dsh-3301": "./lib/cli.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-settings-plugins"
+      ],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "3301",
+    "dsh-3301",
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "cordis",
+    "proxy",
+    "reverse-proxy",
+    "lan",
+    "gate",
+    "websocket",
+    "scrypt"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/schemastery": "^3.18.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
