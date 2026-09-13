@@ -55,11 +55,20 @@
     "scrypt"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aztech-Lab/dsh-3301.git"
+  },
+  "homepage": "https://github.com/Aztech-Lab/dsh-3301#readme",
+  "bugs": {
+    "url": "https://github.com/Aztech-Lab/dsh-3301/issues"
+  },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.2",
     "@deepseek-ai/schemastery": "^3.18.2"
   },
   "engines": {
+    "dsh": ">=1.1",
     "node": ">=18"
   }
 }
